@@ -2,4 +2,30 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - cert-manager.yaml
+  - clean/cert-manager.yaml
+
+patches:
+- path: patch-no-instance.yaml
+  target:
+    kind: CustomResourceDefinition
+    name: certificaterequests.cert-manager.io
+- path: patch-no-instance.yaml
+  target:
+    kind: CustomResourceDefinition
+    name: certificates.cert-manager.io
+- path: patch-no-instance.yaml
+  target:
+    kind: CustomResourceDefinition
+    name: challenges.acme.cert-manager.io
+- path: patch-no-instance.yaml
+  target:
+    kind: CustomResourceDefinition
+    name: clusterissuers.cert-manager.io
+- path: patch-no-instance.yaml
+  target:
+    kind: CustomResourceDefinition
+    name: issuers.cert-manager.io
+- path: patch-no-instance.yaml
+  target:
+    kind: CustomResourceDefinition
+    name: orders.acme.cert-manager.io
